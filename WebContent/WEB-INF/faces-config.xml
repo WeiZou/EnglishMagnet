@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                                  http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+	<application>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
+	<managed-bean>
+		<managed-bean-name>UserBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.facade.UserBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>menuBarBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.facade.MenuBarBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>wordListBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.persistence.collectionOperate.WordlistBackingBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>searchBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.facade.SearchBackingBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>movieListBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.movielist.MovieList</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>getMovieInfoBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.utility.GetMovieInfo</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>wordbookBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.persistence.collectionOperate.Wordbook</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>selectBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.persistence.log.Select</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>findCollectionBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.persistence.collectionOperate.FindCollectionInfo</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>showCollectionBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.persistence.collectionOperate.ShowCollectionSentence</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>overlayListBackingBean</managed-bean-name>
+		<managed-bean-class>com.objectiva.englishmagnet.movielist.OverlayList</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<navigation-rule>
+		<display-name>home.xhtml</display-name>
+		<from-view-id>/page/home.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{UserBackingBean.register}</from-action>
+			<from-outcome>register</from-outcome>
+			<to-view-id>/page/register.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<display-name>home.xhtml</display-name>
+		<from-view-id>/page/home.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{UserBackingBean.login}</from-action>
+			<from-outcome>fail</from-outcome>
+			<to-view-id>/page/home.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{UserBackingBean.login}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/page/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>page/register.xhtml</display-name>
+		<from-view-id>/page/register.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{UserBackingBean.cancel}</from-action>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/page/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>page/register.xhtml</display-name>
+		<from-view-id>/page/register.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{UserBackingBean.regist}</from-action>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/page/register.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>page/home.xhtml</display-name>
+		<from-view-id>/page/register.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{UserBackingBean.regist}</from-action>
+			<from-outcome>regist</from-outcome>
+			<to-view-id>/page/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>home.xhtml</display-name>
+		<from-view-id>/page/home.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{UserBackingBean.uplode}</from-action>
+			<from-outcome>uplode</from-outcome>
+			<to-view-id>/page/upload.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>

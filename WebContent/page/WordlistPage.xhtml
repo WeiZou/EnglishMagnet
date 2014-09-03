@@ -1,0 +1,101 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+
+	<ice:panelGroup styleClass="right_content2" >
+		<ice:panelGroup styleClass="head_bar">
+			<ice:outputLabel value="Word Detail Translation" styleClass="tittle"></ice:outputLabel>
+			<ice:form>
+				<ice:commandButton value="Back" styleClass="back_button" action="#{wordListBackingBean.back}"></ice:commandButton>
+			</ice:form>
+		</ice:panelGroup>
+
+
+		<ice:panelGroup styleClass="wordInformation">
+			<ice:panelGroup styleClass="wordProunounce">
+				<ice:outputLabel styleClass="label1" value="#{wordListBackingBean.word}"></ice:outputLabel>
+				<br />
+				<br />
+				 		[美]：<ice:outputLabel styleClass="label2" >[</ice:outputLabel><ice:outputLabel styleClass="label2" value="#{wordListBackingBean.usPhonetic}">]</ice:outputLabel>
+				<br />	
+				 		[英]：<ice:outputLabel styleClass="label2" >[</ice:outputLabel><ice:outputLabel styleClass="label2" value="#{wordListBackingBean.ukPhonetic}">]</ice:outputLabel>
+			</ice:panelGroup>
+
+			<ice:panelGroup styleClass="wordMeaning">
+				<ui:repeat value="#{wordListBackingBean.result}" var="res">
+					<ice:outputText value="#{res}" styleClass="label2"></ice:outputText>
+
+				</ui:repeat>
+			</ice:panelGroup>
+		</ice:panelGroup>
+
+		<ice:panelGroup>
+			<ice:outputLabel value="电影例句"></ice:outputLabel>
+			<ice:panelGroup styleClass="wordMeaning">
+			
+				<ui:repeat value="#{findCollectionBackingBean.sente}" var="movie_en" varStatus="status"  >
+		                    <ice:panelGroup rendered="#{findCollectionBackingBean.like[status.index]}">
+							<ice:panelGroup styleClass="movie_list_result_sen">
+
+								<ice:form>
+									<ice:commandLink styleClass="movie_list_result_sen1">#{movie_en} </ice:commandLink>
+									<br />
+									<ice:outputText styleClass="movie_list_result_sen2" value="#{findCollectionBackingBean.sentc[status.index]}" ></ice:outputText>
+									<br/>
+								</ice:form>
+
+							</ice:panelGroup>
+							<ice:panelGroup styleClass="wordlistpage_button">
+							
+							<ice:panelGroup styleClass="movie_list_result_button1" rendered="#{findCollectionBackingBean.dislike[status.index]}">
+									<ice:form>
+										<ice:commandButton styleClass="movie_list_result_btnLike1"  ></ice:commandButton>
+										
+										<ice:commandLink styleClass="movie_list_button_sen1"  actionListener="#{findCollectionBackingBean.collectSen}"
+											>收藏例句
+											<f:param name="wordlist_word" value="#{wordListBackingBean.word}"></f:param>
+											<f:param name="collect" value="#{status.index}" ></f:param>
+											</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+								
+								
+								
+								
+								<ice:panelGroup styleClass="movie_list_result_button1" rendered="#{findCollectionBackingBean.like[status.index]}">
+									<ice:form>
+										<ice:commandButton styleClass="movie_list_result_btnLike2" ></ice:commandButton>
+										
+										<ice:commandLink styleClass="movie_list_button_sen1"  actionListener="#{findCollectionBackingBean.cancelCollectSen(status.index)}"
+											>取消收藏
+											<f:param name="wordlist_word" value="#{wordListBackingBean.word}"></f:param>
+											<f:param name="collect" value="#{status.index}" ></f:param>
+											</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+								
+															
+								<ice:panelGroup styleClass="movie_list_result_button2">
+									<ice:form>
+										<ice:commandButton styleClass="movie_list_result_btnMovie" type="button" onclick='Appearoverlays(#{findCollectionBackingBean.startt[status.index]},#{findCollectionBackingBean.endt[status.index]},#{findCollectionBackingBean.mov[status.index]});'>
+											</ice:commandButton>
+										<ice:commandLink styleClass="movie_list_button_sen1" onclick='Appearoverlays(#{findCollectionBackingBean.startt[status.index]},#{findCollectionBackingBean.endt[status.index]},#{findCollectionBackingBean.mov[status.index]});' 
+										 action="#{overlayListBackingBean.findOverlaySenSimple(findCollectionBackingBean.startt,findCollectionBackingBean.mov,findCollectionBackingBean.sente,findCollectionBackingBean.wordd,findCollectionBackingBean.like)}">播放例句</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+							</ice:panelGroup>
+						</ice:panelGroup>
+						
+					</ui:repeat>
+			
+				
+				
+				
+			</ice:panelGroup>
+		</ice:panelGroup>
+	</ice:panelGroup>
+
+</ui:composition>

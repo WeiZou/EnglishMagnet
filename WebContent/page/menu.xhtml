@@ -1,0 +1,43 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<ice:form>
+
+		<ice:panelGroup styleClass="head">
+			<ice:commandButton value="#{msgs.upload}" image="/image/uplode2.png"
+				styleClass="btt" rendered="#{UserBackingBean.iscancel}"
+				action="#{UserBackingBean.uplode}" />
+			<ice:commandButton value="#{msgs.exit}" styleClass="bttb"
+				rendered="#{UserBackingBean.withdraw}"
+				action="#{UserBackingBean.wdraw}" />
+			<ice:outputLabel value="#{UserBackingBean.errMessage}"
+				styleClass="msg" />
+
+			<ice:panelGroup styleClass="main">
+				<ice:graphicImage value="/image/logo1.png"></ice:graphicImage>
+
+				<ice:panelGroup styleClass="log">
+					<ice:outputLabel value="#{msgs.name}"
+						rendered="#{UserBackingBean.recancel}" />
+					<ice:inputText value="#{UserBackingBean.name}" styleClass="box"
+						rendered="#{UserBackingBean.recancel}" />
+					<ice:outputLabel value="#{msgs.password}" styleClass="ppp"
+						rendered="#{UserBackingBean.recancel}" />
+					<ice:inputSecret value="#{UserBackingBean.password}"
+						styleClass="box" rendered="#{UserBackingBean.recancel}" />
+					<ice:commandButton value="#{msgs.login}" styleClass="loginbox"
+						action="#{UserBackingBean.login}"
+						rendered="#{UserBackingBean.recancel}" />
+					<ice:commandButton value="#{msgs.rigester}"
+						styleClass="regesterbox" action="#{UserBackingBean.register}"
+						rendered="#{UserBackingBean.recancel}" />
+				</ice:panelGroup>
+
+			</ice:panelGroup>
+
+		</ice:panelGroup>
+	</ice:form>
+</ui:composition>

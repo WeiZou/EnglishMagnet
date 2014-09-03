@@ -1,0 +1,105 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	
+
+	<ice:panelGroup styleClass="overlays_overlays" id="overlays">
+	    <button class = "overlays_btn" type="button" onclick="closeOverL()"> </button>
+		<ice:panelGroup styleClass = "overlays_main">
+    		<ice:panelGroup styleClass ="overlays_media" >
+		        	<ice:panelGroup styleClass = "overlays_play">
+		             <video width="626" height="422" controls="controls" type="video/mp4" id = "Video1" src = "../video/demo0.mp4" style="display:none"></video>	
+		             <video width="626" height="422" controls="controls" type="video/mp4" id = "Video2" src = "../video/demo1.mp4" style="display:none"></video>
+		           </ice:panelGroup>
+		    </ice:panelGroup>
+			<ice:panelGroup styleClass = "overlays_cont">
+			       	<ice:outputLabel styleClass="overlays_title">电影名字</ice:outputLabel>
+					    <button   class="overlays_heartbutton "  name="heart" onclick="collect(this.id);" type="button"> </button>
+					    <ice:outputLabel styleClass="overlays_examplefont">收藏例句</ice:outputLabel>
+			        <ice:panelGroup styleClass="overlays_keyword">
+						<ice:panelGroup styleClass="overlays_keywordfont">地区：美国</ice:panelGroup>
+						<ice:panelGroup styleClass="overlays_keywordfont">导演:</ice:panelGroup>
+						<ice:panelGroup styleClass="overlays_keywordfont">演员:</ice:panelGroup>
+					</ice:panelGroup>
+					<ice:panelGroup styleClass="overlays_introduce">
+						<ice:panelGroup styleClass= "overlays_introducefont">内容简介:</ice:panelGroup>
+					</ice:panelGroup>
+		  </ice:panelGroup>
+
+
+
+				<ice:panelGroup styleClass = "overlays_word" >
+			        
+			       <ice:panelGroup styleClass = "overlays_subtitle" id="overlaysWord">
+			       
+			       <ui:repeat value="#{overlayListBackingBean.sene}"
+									var="movie_en" varStatus="status" >
+                                    
+
+									<ice:panelGroup styleClass="overlays_result_sentence" rendered="#{overlayListBackingBean.show_overlay_sen[status.index]}">
+										<ice:panelGroup styleClass="overlays_result_sen">
+
+											<ice:form>
+												<ice:commandLink styleClass="overlays_result_sen1">#{movie_en} </ice:commandLink>
+												<br />
+												<ice:commandLink styleClass="overlays_result_sen1">#{overlayListBackingBean.senc[status.index]} </ice:commandLink>
+
+											</ice:form>
+
+										</ice:panelGroup>
+										<ice:panelGroup styleClass="overlays_result_button">
+									         <ice:panelGroup styleClass="movie_list_result_button1" rendered="#{overlayListBackingBean.dislike[status.index]}">
+									<ice:form>
+										<ice:commandButton styleClass="overlays_result_btnLike1"  ></ice:commandButton>
+										
+										<ice:commandLink styleClass="movie_list_button_sen1"  actionListener="#{overlayListBackingBean.collectSen( overlayListBackingBean.movie_id[status.index],status.index )}"
+											>收藏例句
+											<f:param name="collect" value="#{status.index}" ></f:param>
+											</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+								
+								
+								
+								
+								<ice:panelGroup styleClass="movie_list_result_button1" rendered="#{overlayListBackingBean.like[status.index]}">
+									<ice:form>
+										<ice:commandButton styleClass="overlays_result_btnLike2" ></ice:commandButton>
+										
+										<ice:commandLink styleClass="movie_list_button_sen1"  actionListener="#{overlayListBackingBean.cancelCollectSen(status.index)}"
+											>取消收藏
+											<f:param name="collect" value="#{status.index}" ></f:param>
+											</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup> 
+											<ice:panelGroup styleClass="overlays_result_button2">
+												<ice:form>
+													<ice:commandButton styleClass="overlays_result_btnMovie"
+														type="button"
+														onclick='Appearoverlays(#{overlayListBackingBean.start[status.index]},#{overlayListBackingBean.end[status.index]},#{overlayListBackingBean.movie_id[status.index]});'></ice:commandButton>
+													<ice:commandLink styleClass="overlays_result_sen1" onclick='Appearoverlays(#{overlayListBackingBean.start[status.index]},#{overlayListBackingBean.end[status.index]},#{overlayListBackingBean.movie_id[status.index]});'>播放例句</ice:commandLink>
+												</ice:form>
+											</ice:panelGroup>
+										</ice:panelGroup>
+
+                                        <hr class="overlays_hr"></hr>
+									</ice:panelGroup>
+                                    
+									<!-- 2nd uirepeat End -->
+								</ui:repeat>
+			       
+			       </ice:panelGroup>
+				</ice:panelGroup>
+			
+				<ice:panelGroup styleClass = "overlays_none"></ice:panelGroup>
+		</ice:panelGroup>
+</ice:panelGroup>
+	
+
+
+
+
+</ui:composition>

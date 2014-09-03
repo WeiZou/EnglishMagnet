@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+
+
+	<ui:repeat var="rearchHistory" value="#{selectBackingBean.string1}"
+		varStatus="status">
+		<h:form>
+			<h:commandButton styleClass="rearchHistory"
+				action="#{searchBackingBean.search_button(rearchHistory)}"
+				onclick='search("#{rearchHistory}");' value="#{rearchHistory}"></h:commandButton>
+			<br />
+		</h:form>
+	</ui:repeat>
+
+
+
+
+</ui:composition>

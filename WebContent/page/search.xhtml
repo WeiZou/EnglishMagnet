@@ -1,0 +1,42 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ice:panelGroup styleClass="search_box">
+		<ice:form method="get" partialSubmit="true" id="search_form" >
+			<ice:inputText styleClass="search_input" id="search_input"
+				value="#{searchBackingBean.input_word}"  action="#{searchBackingBean.invokeAPI}" onkeydown="return pressEnter(event);"
+				>
+			</ice:inputText>
+			
+			<ice:commandButton styleClass="search_pic" 
+				 action="#{searchBackingBean.invokeAPI}"  onclick="verify_word_text();"></ice:commandButton>
+		   
+		</ice:form>
+
+	</ice:panelGroup>
+
+	<ice:panelGroup styleClass="search_blank">
+	</ice:panelGroup>
+
+	<ice:panelGroup styleClass="translation_part" id="translation"
+		rendered="#{searchBackingBean.validate}">
+		<ice:panelGroup styleClass="translation_head">
+				#{searchBackingBean.reword}
+		</ice:panelGroup>
+		<ice:panelGroup styleClass="translation_body">
+			<ice:panelGroup styleClass="translation_phonetic">
+			#{msgs.us}:[#{searchBackingBean.usPhonetic}] &#160; #{msgs.uk}:[#{searchBackingBean.ukPhonetic}]
+			</ice:panelGroup>
+			<br />
+			<ui:repeat value="#{searchBackingBean.result}" var="res">
+				<ice:outputText value="#{res}"></ice:outputText>
+				<br />
+			</ui:repeat>
+		</ice:panelGroup>
+	</ice:panelGroup>
+
+</ui:composition>

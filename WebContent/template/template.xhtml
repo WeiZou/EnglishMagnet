@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>English Magnet</title>
+	<ice:outputStyle href="../css/common.css" />
+	<ice:outputStyle href="../css/jscrollpane1.css" />
+
+
+	<script type="text/javascript" src="../js/movie_type.js"></script>
+	<script type="text/javascript" src="../js/movie_list.js"></script>
+
+
+	<script type="text/javascript" src="../js/search.js"></script>
+	<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.jscrollpane.js"></script>
+	<script type="text/javascript" src="../js/jquery.jscrollpane.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.mousewheel.js"></script>
+	<script type="text/javascript" src="../js/mwheelIntent.js"></script>
+	<script type="text/javascript" src="../js/scroll.js"></script>
+	<script type="text/javascript" src="../js/scroll-startstop.events.jquery.js"></script>
+	<script type="text/javascript" src="../js/login_onfocus.js"></script>
+</h:head>
+<h:body>
+
+	<ice:panelGroup styleClass="header">
+		<ui:insert name="menu" />
+	</ice:panelGroup>
+	<ice:panelGroup styleClass="amain">
+		<ice:panelGroup styleClass="content">
+
+
+			<ice:panelGroup styleClass="left_content">
+				<ice:panelGroup styleClass="search_part" id="search">
+					<ice:panelGroup styleClass="stop">
+					&nbsp;Search
+				</ice:panelGroup>
+					<ui:insert name="search" />
+				</ice:panelGroup>
+
+				<ice:panelGroup styleClass="lstyle" id="search_history"
+					rendered="#{UserBackingBean.withdraw}">
+					<ice:panelGroup styleClass="stop">
+					&nbsp;Search History
+				</ice:panelGroup>
+					<ui:insert name="search_history"></ui:insert>
+				</ice:panelGroup>
+				<ice:panelGroup styleClass="lstyle" id="word_list"
+					rendered="#{UserBackingBean.withdraw}">
+					<ice:panelGroup styleClass="stop">
+					&nbsp;Word List
+				</ice:panelGroup>
+					<ui:insert name="word_list"></ui:insert>
+				</ice:panelGroup>
+			</ice:panelGroup>
+
+
+
+
+			<ice:panelGroup styleClass="right_content">
+				<ice:panelGroup styleClass="movie_type"
+					rendered="#{menuBarBackingBean.type_show}">
+					<ui:insert name="movie_type"></ui:insert>
+					<!--  可自行修改此处布局-->
+				</ice:panelGroup>
+
+
+				<ice:panelGroup styleClass="movie_list" id="movieList"
+					rendered="#{movieListBackingBean.movie_show}">
+					<ui:insert name="movie_list"></ui:insert>
+					<!--可自行修改此处布局-->
+				</ice:panelGroup>
+
+
+				<ice:panelGroup>
+					<ui:insert name="overlay"></ui:insert>
+				</ice:panelGroup>
+
+				<ice:panelGroup styleClass="right_content2" id="wordList_panel"
+					rendered="#{wordListBackingBean.wordList_show}">
+
+					<ui:insert name="word_list_panel"></ui:insert>
+					<!--可自行修改此处布局-->
+				</ice:panelGroup>
+			</ice:panelGroup>
+
+			<!-- s收藏单词  主板块 -->
+
+
+		</ice:panelGroup>
+	</ice:panelGroup>
+</h:body>
+</html>

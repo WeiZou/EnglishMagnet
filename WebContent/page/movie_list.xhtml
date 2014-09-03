@@ -1,0 +1,176 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+    <ice:panelGroup rendered="#{showCollectionBackingBean.anti_show_collect}">
+	<!-- 1st uirepeat Start -->
+	<ui:repeat value="#{movieListBackingBean.movieinfo}" var="movieAttr" 
+		varStatus="outStatus">
+		<ice:panelGroup styleClass="movie_list_movie" rendered="#{menuBarBackingBean.all[movieAttr[0]-1]}">
+
+			<ice:panelGroup styleClass="movie_list_title">
+				<ice:panelGroup styleClass="movie_list_title_name">#{movieListBackingBean.moviename[movieAttr[0]]}</ice:panelGroup>
+
+				<ice:panelGroup styleClass="movie_list_title_pic">
+				</ice:panelGroup>
+			</ice:panelGroup>
+
+			<ice:panelGroup styleClass="movie_list_result">
+				<ice:panelGroup styleClass="movie_list_result_pic"></ice:panelGroup>
+				<ice:panelGroup styleClass="movie_list_result_sentencesList"
+					id='sentence'>
+					<!-- 2nd uirepeat Start -->
+					<ui:repeat value="#{movieListBackingBean.test_en}" var="movie_en"
+						varStatus="status" size="#{movieListBackingBean.movieinfo[outStatus.index][2]}" offset="#{movieListBackingBean.movieinfo[outStatus.index][1]}">
+
+
+						<ice:panelGroup styleClass="movie_list_result_sentence" rendered="#{movieListBackingBean.appear[status.index]}"
+							>
+							<ice:panelGroup styleClass="movie_list_result_sen">
+
+								<ice:form>
+									<ice:commandLink styleClass="movie_list_result_sen1"
+										onclick='Appearoverlays(#{movieListBackingBean.start[status.index]},#{movieListBackingBean.end[status.index]},0);'>#{movie_en} </ice:commandLink>
+									<br />
+									<ice:commandLink styleClass="movie_list_result_sen2"
+										onclick='Appearoverlays(#{movieListBackingBean.start[status.index]},#{movieListBackingBean.end[status.index]},0);'>#{movieListBackingBean.test_ch[status.index]} </ice:commandLink>
+								</ice:form>
+
+							</ice:panelGroup>
+							<ice:panelGroup styleClass="movie_list_result_button">
+								<ice:panelGroup styleClass="movie_list_result_button1" rendered="#{movieListBackingBean.dislike[status.index]}">
+									<ice:form>
+										<ice:commandButton styleClass="movie_list_result_btnLike1"  ></ice:commandButton>
+										
+										<ice:commandLink styleClass="movie_list_button_sen1"  
+										    actionListener="#{movieListBackingBean.collectSen( movieListBackingBean.movieinfo[outStatus.index][0],status.index )}"
+											onclick = 'noUserclick(#{movieListBackingBean.userId});'
+											>收藏例句
+											<f:param name="collect" value="#{status.index}" ></f:param>
+											</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+								
+								
+								
+								
+								<ice:panelGroup styleClass="movie_list_result_button1" rendered="#{movieListBackingBean.like[status.index]}">
+									<ice:form>
+										<ice:commandButton styleClass="movie_list_result_btnLike2" ></ice:commandButton>
+										
+										<ice:commandLink styleClass="movie_list_button_sen1"  actionListener="#{movieListBackingBean.cancelCollectSen( movieListBackingBean.movieinfo[outStatus.index][0],status.index,movieListBackingBean.start[status.index] )}"
+											>取消收藏
+											<f:param name="collect" value="#{status.index}" ></f:param>
+											</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+								
+								
+								
+								
+								
+								<ice:panelGroup styleClass="movie_list_result_button2">
+									<ice:form>
+										<ice:commandButton styleClass="movie_list_result_btnMovie"
+											type="button"
+											onclick='Appearoverlays(#{movieListBackingBean.start[status.index]},#{movieListBackingBean.end[status.index]},#{movieListBackingBean.movieinfo[outStatus.index][0]});'></ice:commandButton>
+										<ice:commandLink styleClass="movie_list_button_sen1"
+											onclick='Appearoverlays(#{movieListBackingBean.start[status.index]},#{movieListBackingBean.end[status.index]},#{movieListBackingBean.movieinfo[outStatus.index][0]});'
+											action="#{overlayListBackingBean.findOverlaySen(movieListBackingBean.start,movieListBackingBean.movieinfo[outStatus.index][0],movieListBackingBean.movieinfo[outStatus.index][1],movieListBackingBean.movieinfo[outStatus.index][2],movieListBackingBean.appear,movieListBackingBean.test_en,movieListBackingBean.like)}">播放例句</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+							</ice:panelGroup>
+						</ice:panelGroup>
+						<!-- 2nd uirepeat End -->
+					</ui:repeat>
+				</ice:panelGroup>
+				<ice:form rendered="#{movieListBackingBean.yesorno}">
+					<ice:commandLink styleClass="movie_list_result_more"
+						action="#{movieListBackingBean.change_appear(movieAttr[1],movieAttr[2])}">加载更多</ice:commandLink>
+					<ice:commandLink styleClass="movie_list_result_less"
+						action="#{movieListBackingBean.less_appear(movieAttr[1],movieAttr[2])}">收起</ice:commandLink>
+				</ice:form>
+			</ice:panelGroup>
+			
+		</ice:panelGroup>
+
+		<!-- 1st uirepeat End -->
+	</ui:repeat>
+	</ice:panelGroup>
+	
+	
+	
+
+		<ice:panelGroup styleClass="movie_list_movie" rendered="#{showCollectionBackingBean.show_collect}">
+
+			<ice:panelGroup styleClass="movie_list_title">
+				<ice:panelGroup styleClass="movie_list_title_name">已收藏</ice:panelGroup>
+
+				<ice:panelGroup styleClass="movie_list_title_pic">
+				</ice:panelGroup>
+			</ice:panelGroup>
+
+			<ice:panelGroup styleClass="movie_list_result">
+				<ice:panelGroup styleClass="movie_list_result_sentencesList">
+					<!-- 2nd uirepeat Start -->
+					<ui:repeat value="#{showCollectionBackingBean.sene}" var="sene"  
+						varStatus="status" >
+
+
+						<ice:panelGroup styleClass="movie_list_result_sentence" rendered="#{showCollectionBackingBean.show_sentence[status.index]}">
+							<ice:panelGroup styleClass="movie_list_result_sen">
+
+								<ice:form>
+									<ice:commandLink styleClass="movie_list_result_sen1"
+										onclick='Appearoverlays(#{showCollectionBackingBean.start[status.index]},#{showCollectionBackingBean.end[status.index]},0);'>#{sene} </ice:commandLink>
+									<br />
+									<ice:commandLink styleClass="movie_list_result_sen2"
+										onclick='Appearoverlays(#{showCollectionBackingBean.start[status.index]},#{showCollectionBackingBean.end[status.index]},0);'>#{showCollectionBackingBean.senc[status.index]} </ice:commandLink>
+								</ice:form>
+
+							</ice:panelGroup>
+							<ice:panelGroup styleClass="movie_list_result_button">
+								
+								
+											
+								<ice:panelGroup styleClass="movie_list_result_button1" >
+									<ice:form>
+										<ice:commandButton styleClass="movie_list_result_btnLike2" ></ice:commandButton>
+										
+										<ice:commandLink styleClass="movie_list_button_sen1"  actionListener="#{showCollectionBackingBean.cancelCollectSen(status.index)}"
+											>取消收藏
+											<f:param name="collect" value="#{status.index}" ></f:param>
+											</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+								
+								
+								
+								
+								
+								<ice:panelGroup styleClass="movie_list_result_button2">
+									<ice:form>
+										<ice:commandButton styleClass="movie_list_result_btnMovie"
+											type="button"
+											onclick='Appearoverlays(#{showCollectionBackingBean.start[status.index]},#{showCollectionBackingBean.end[status.index]},#{showCollectionBackingBean.movie_id[status.index]});'></ice:commandButton>
+										<ice:commandLink styleClass="movie_list_button_sen1"
+											onclick='Appearoverlays(#{showCollectionBackingBean.start[status.index]},#{showCollectionBackingBean.end[status.index]},#{showCollectionBackingBean.movie_id[status.index]});' action="#{overlayListBackingBean.findOverlaySenSimple(showCollectionBackingBean.start,showCollectionBackingBean.movie_id,showCollectionBackingBean.sene,showCollectionBackingBean.word,showCollectionBackingBean.show_sentence)}">播放例句</ice:commandLink>
+									</ice:form>
+								</ice:panelGroup>
+							</ice:panelGroup>
+						</ice:panelGroup>
+						<!-- 2nd uirepeat End -->
+					</ui:repeat>
+				</ice:panelGroup>
+			
+			</ice:panelGroup>
+			
+		</ice:panelGroup>
+
+
+	
+	
+</ui:composition>

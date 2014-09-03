@@ -1,0 +1,38 @@
+<ui:composition template="../template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+	<ui:define name="menu">
+		<ui:include src="menu.xhtml" />
+	</ui:define>
+
+	<ui:define name="search">
+		<ui:include src="search.xhtml" />
+	</ui:define>
+
+	<ui:define name="search_history">
+		<ui:include src="search_history.xhtml" />
+	</ui:define>
+
+	<ui:define name="word_list">
+		<ui:include src="word_list.xhtml" />
+	</ui:define>
+	<ui:define name="movie_type">
+		<ui:include src="movie_type.xhtml" />
+	</ui:define>
+
+	<ui:define name="movie_list">
+		<ui:include src="movie_list.xhtml" />
+	</ui:define>
+	<ui:define name="word_list_panel">
+		<ui:include src="WordlistPage.xhtml" />
+	</ui:define>
+
+	<ui:define name="overlay">
+		<ui:include src="overlay.xhtml" />
+	</ui:define>
+
+</ui:composition>

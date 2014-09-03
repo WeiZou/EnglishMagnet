@@ -1,0 +1,174 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+
+
+	<ice:form id="movie_type_form">
+
+		<ice:panelGroup id="movietypeipg" styleClass="menuBar_panel">
+
+			<ice:panelGroup styleClass="back_color">
+			</ice:panelGroup>
+
+			<ice:menuBar id="movie_type_mb">
+
+				<ice:menuItem value="#{msgs.type}" id="movie_type_type">
+					<ice:menuItem id="movie_type_type_all" value="#{msgs.all}"
+						actionListener="#{menuBarBackingBean.listener}"
+						onclick="showChoice('type','type_all');">
+						<f:param name="myParam_type" value="all"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_comedy" value="#{msgs.comedy}"
+						actionListener="#{menuBarBackingBean.listener}"
+						onclick="showChoice('type','comedy');">
+						<f:param name="myParam_type" value="comedy"></f:param>
+					</ice:menuItem>
+
+					<ice:menuItem id="movie_type_horror" value="#{msgs.fiction}"
+						actionListener="#{menuBarBackingBean.listener}"
+						onclick="showChoice('type','horror');">
+						<f:param name="myParam_type" value="horror"></f:param>
+					</ice:menuItem>
+
+					<ice:menuItem id="movie_type_suspense" value="#{msgs.horror}"
+						actionListener="#{menuBarBackingBean.listener}"
+						onclick="showChoice('type','suspense');">
+						<f:param name="myParam_type" value="suspense"></f:param>
+					</ice:menuItem>
+
+					<ice:menuItem id="movie_type_feature" value="#{msgs.feature}"
+						actionListener="#{menuBarBackingBean.listener}"
+						onclick="showChoice('type','feature');">
+						<f:param name="myParam_type" value="feature"></f:param>
+					</ice:menuItem>
+
+					<ice:menuItem id="movie_type_thriller" value="#{msgs.thriller}"
+						onclick="showChoice('type','thriller');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_type" value="thriller"></f:param>
+					</ice:menuItem>
+
+					<ice:menuItem id="movie_type_action" value="#{msgs.action}"
+						onclick="showChoice('type','action');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_type" value="action"></f:param>
+					</ice:menuItem>
+
+					<ice:menuItem id="movie_type_other" value="#{msgs.other}"
+						onclick="showChoice('type','other');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_type" value="other"></f:param>
+					</ice:menuItem>
+				</ice:menuItem>
+
+				<ice:menuItem id="movie_type_nation" value="#{msgs.country}">
+					<ice:menuItem id="movie_type_nation_all" value="#{msgs.all}"
+						onclick="showChoice('nation','nation_all');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_nation" value="all"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_neidi" value="#{msgs.inland}"
+						onclick="showChoice('nation','neidi');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_nation" value="neidi"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_gangtai" value="#{msgs.gangtai}"
+						onclick="showChoice('nation','gangtai');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_nation" value="gangtai"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_oumei" value="#{msgs.oumei}"
+						onclick="showChoice('nation','oumei');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_nation" value="oumei"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_rihan" value="#{msgs.rihan}"
+						onclick="showChoice('nation','rihan');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_nation" value="rihan"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_other" value="#{msgs.other}"
+						onclick="showChoice('nation','other');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_nation" value="other"></f:param>
+					</ice:menuItem>
+				</ice:menuItem>
+
+
+				<ice:menuItem id="movie_type_age" value="#{msgs.year}">
+					<ice:menuItem id="movie_type_age_all" value="#{msgs.all}"
+						onclick="showChoice('age','age_all');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_age" value="all"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_2014" value="2014"
+						onclick="showChoice('age','2014');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_age" value="2014"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_2013" value="2013"
+						onclick="showChoice('age','2013');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_age" value="2013"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_2012" value="2012"
+						onclick="showChoice('age','2012');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_age" value="2012"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_2011" value="2011"
+						onclick="showChoice('age','2011');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_age" value="2011"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_2010" value="2010"
+						onclick="showChoice('age','2010');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_age" value="2010"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_2009" value="2009"
+						onclick="showChoice('age','2009');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_age" value="2009"></f:param>
+					</ice:menuItem>
+					<ice:menuItem id="movie_type_earlier" value="#{msgs.early}"
+						onclick="showChoice('age','earlier');"
+						actionListener="#{menuBarBackingBean.listener}">
+						<f:param name="myParam_age" value="earlier"></f:param>
+					</ice:menuItem>
+				</ice:menuItem>
+
+				<ice:menuItem id="movie_type_collect" value="#{msgs.collected}"
+					rendered="#{UserBackingBean.withdraw}"
+					actionListener="#{showCollectionBackingBean.find_info}"></ice:menuItem>
+
+			</ice:menuBar>
+
+			<ice:panelGroup styleClass="search_actor_panel">
+				<h:inputText styleClass="actor_input" name="issueName"
+					id="movie_type_actor_text"
+					onclick="clear_actor('movie_type_actor_text');"
+					value="#{menuBarBackingBean.actor}">
+					<!-- valueChangeListener="#{backingbean.emptyCheck}"> -->
+				</h:inputText>
+
+				<h:commandButton styleClass="actor_button"
+					onclick="verify_actor_text('movie_type_actor_text');"
+					actionListener="#{menuBarBackingBean.submitActor}"></h:commandButton>
+
+			</ice:panelGroup>
+
+			<ice:panelGroup id="displayChoice" styleClass="displayContainner">
+				<ice:panelLayout id="movie_type_type_choice"
+					styleClass="displayChoice_type"></ice:panelLayout>
+				<ice:panelLayout id="movie_type_nation_choice"
+					styleClass="displayChoice_nation"></ice:panelLayout>
+				<ice:panelLayout id="movie_type_age_choice"
+					styleClass="displayChoice_age"></ice:panelLayout>
+			</ice:panelGroup>
+		</ice:panelGroup>
+	</ice:form>
+</ui:composition>

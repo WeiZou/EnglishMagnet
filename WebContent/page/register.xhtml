@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core">
+<h:head>
+
+	<ice:outputStyle href="../css/common.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+	<title>Register</title>
+	<h:outputStylesheet library="css" name="validate.css" />
+
+</h:head>
+<h:body>
+	<ice:form>
+	
+		<ice:panelGroup styleClass="head">
+		<ice:commandButton value="#{msgs.upload}" image = "/image/uplode2.png" styleClass="btt" rendered= "#{UserBackingBean.iscancel}" action = "#{UserBackingBean.uplode}"/>
+		<ice:commandButton value="#{msgs.zhuxiao}"  styleClass="bttb" rendered= "#{UserBackingBean.withdraw}" action = "#{UserBackingBean.wdraw}"/>	
+		<ice:outputLabel value="#{UserBackingBean.errMessage}" styleClass="msg" />	
+		
+	     	<ice:panelGroup styleClass="main">
+				<ice:graphicImage value="/image/logo1.png"></ice:graphicImage>
+				
+				<ice:panelGroup styleClass="log"> 
+				<ice:outputLabel value = "#{msgs.name}" rendered= "#{UserBackingBean.recancel}"/>
+                <ice:inputText
+						value="#{UserBackingBean.name}" styleClass="box" rendered= "#{UserBackingBean.recancel}" />
+				<ice:outputLabel value = "#{msgs.password}" styleClass = "ppp" rendered= "#{UserBackingBean.recancel}"/>
+                <ice:inputSecret
+						value="#{UserBackingBean.password}" styleClass="box" rendered= "#{UserBackingBean.recancel}"/>
+					<ice:commandButton value="#{msgs.login}" styleClass="loginbox" 
+						action="#{UserBackingBean.login}" rendered= "#{UserBackingBean.recancel}"/>
+					<ice:commandButton value="#{msgs.rigester}" styleClass="regesterbox"
+						action="#{UserBackingBean.register}" rendered= "#{UserBackingBean.recancel}"/>
+				</ice:panelGroup>		
+							
+			</ice:panelGroup>
+        
+		</ice:panelGroup>
+	</ice:form>
+
+    <ice:panelGroup styleClass = "bbground">
+	<ice:panelGroup styleClass="bground">
+	
+		<ice:panelGroup styleClass="pgp1">
+			<ice:outputLabel styleClass="text1" value="Register">
+			</ice:outputLabel>
+		</ice:panelGroup>
+
+
+		<ice:panelGroup styleClass="pgp2">
+			<ice:form>
+				<ice:panelGroup styleClass="pgp3">
+					<ice:outputText styleClass="opt1" value="#{msgs.nameTwo}" />
+					<ice:inputText styleClass="box1" required="true" requiredMessage = "#{msgs.notation}"
+						partialSubmit="true" id="name" value="#{UserBackingBean.name}"
+						validator="#{UserBackingBean.validateName}" />
+				<ice:message for="name" style="color:#25B627" />
+		</ice:panelGroup>
+
+				<ice:panelGroup styleClass="pgp3">
+					<ice:outputText styleClass="opt1" value="#{msgs.passTwo}" />
+					<ice:inputSecret required="true" requiredMessage = "#{msgs.notation}" redisplay="true"
+						partialSubmit="true" styleClass="box1" id="password"
+						value="#{UserBackingBean.word}"
+						validator="#{UserBackingBean.validatePassword}" />
+					<ice:message for="password" style="color:#25B627" />
+				</ice:panelGroup>
+
+				<ice:panelGroup styleClass="pgp3">
+					<ice:outputText styleClass="opt1" value="#{msgs.checkPass}" />
+					<ice:inputSecret styleClass="box1" redisplay="true"
+						partialSubmit="true" required="true" requiredMessage = "#{msgs.notation}" id="passwordcheck"
+						value="#{UserBackingBean.password}"
+						validator="#{UserBackingBean.validatePasswordCheck}" />
+					<ice:message for="passwordcheck" style="color:#25B627" />
+				</ice:panelGroup>
+
+				<ice:panelGroup styleClass="pgp3">
+					<ice:outputText styleClass="opt1" value="#{msgs.mail}" />
+					<ice:inputText styleClass="box1" required="true" requiredMessage = "#{msgs.notation}"
+						partialSubmit="true" id="mail" value="#{UserBackingBean.mail}"
+						validator="#{UserBackingBean.validateMail}" />
+					<ice:message for="mail" style="color:#25B627" />
+				</ice:panelGroup>
+				
+		</ice:form>
+		
+			<ice:form onsubmit="return false">
+				<ice:commandButton styleClass="sub1" value="Cancel"
+					action="#{UserBackingBean.cancel}" />
+				<ice:commandButton styleClass="sub2" value="Register"
+					action="#{UserBackingBean.regist}" />
+			</ice:form>
+			
+		</ice:panelGroup>
+	</ice:panelGroup>
+	</ice:panelGroup>>
+</h:body>
+</html>
+
